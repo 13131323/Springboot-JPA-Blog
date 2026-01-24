@@ -33,6 +33,9 @@ public class Board {
     @Column(name = "author", nullable = false)
     private String author;
 
+    @Column(columnDefinition = "integer default 0", nullable = false)
+    private int commentCount;
+
     @CreatedDate
     @Column(name = "created_at")
     private LocalDateTime createdAt;
@@ -46,5 +49,20 @@ public class Board {
         this.title = title;
         this.content = content;
         this.author = author;
+    }
+
+    public void update(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
+
+    public void addComment() {
+        this.commentCount++;
+    }
+
+    public void removeComment() {
+        if (this.commentCount > 0) {
+            this.commentCount--;
+        }
     }
 }
